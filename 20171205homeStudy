@@ -50,18 +50,18 @@ void dataOutput() {
 
 /*데이터 버블정렬 함수*/
 void dataSort() {
-	char tempName[20];
 	int i;
 	int j;
+	CARD temp;
 	for (i = 0; i < cnt - 1; i++)
 	{
 		for (j = 0; j < cnt - 1; j++) 
 		{
 			if (strcmp(information[j].name, information[j+1].name) == 1)
 			{
-				strcpy(tempName, information[j].name);
-				strcpy(information[j].name, information[j+1].name);
-				strcpy(information[j+1].name, tempName);
+				strcpy(temp, information[j]);
+				strcpy(information[j], information[j+1]);
+				strcpy(information[j+1], temp);
 			}
 		}
 	}
