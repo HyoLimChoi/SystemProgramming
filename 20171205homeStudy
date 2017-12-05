@@ -121,7 +121,7 @@ void dataUpdate() {
 	int i;
 	char tempName[20];
 	w_fd = open(f, O_WRONLY);
-	printf("Please enter a name to update : ", stdout);
+	printf("Please enter a name to update : ");
 	scanf("%s", tempName);
 
 
