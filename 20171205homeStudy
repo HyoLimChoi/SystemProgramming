@@ -201,7 +201,6 @@ int main()
 		}
 		/*기존에 파일에 정보 있는지 확인*/
 		read(r_fd, information[cnt].company, 20);
-		printf("test : %d\n",read(r_fd, information[cnt].company, 20));
 		read(r_fd, information[cnt].tel, 20);
 		cnt++;
 	}
