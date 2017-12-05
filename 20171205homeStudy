@@ -190,6 +190,7 @@ int main()
 	while (1) {
 		printf("(1)Data Input\n(2)Data Output\n(3)Data Sort\n(4)Data Search\n(5)Data Update\n(6)Data Delete\n(7)Quit\n ");
 		scanf("%d", &input);
+		printf("Input number : ");
 		/*선택한 동작 선택*/
 		switch (input) {
 		case 1:dataInput();break;
