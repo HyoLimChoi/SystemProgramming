@@ -146,6 +146,7 @@ void dataUpdate() {
 			write(w_fd, information[i].name, 20);
 			write(w_fd, information[i].company, 20);
 			write(w_fd, information[i].tel, 20);
+			printf("Update Complete!!!\n);
 			return;
 		}
 	}
@@ -175,6 +176,7 @@ void dataDelete() {
 				write(w_fd, information[i].tel, 20);
 			}
 			return;
+			printf("Delete Complete!!!\n);
 		}
 	}
 	puts("The name does not exist.");
@@ -199,6 +201,7 @@ int main()
 		}
 		/*기존에 파일에 정보 있는지 확인*/
 		read(r_fd, information[cnt].company, 20);
+		printf("test : %d\n",read(r_fd, information[cnt].company, 20));
 		read(r_fd, information[cnt].tel, 20);
 		cnt++;
 	}
@@ -220,7 +223,7 @@ int main()
 			printf("\n\n****Program End****\n\n\n\n");
 			close(w_fd);
 			return;
-		default: printf("Please ReInput.\n");
+		default: printf("Please ReInput.\n\n\n===================\n");
 		}
 		getchar();
 
