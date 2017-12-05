@@ -107,7 +107,7 @@ void dataSearch() {
 
 			if (!(strcmp(tempName, information[mid].name))) {
 				printf("%s's Company is %s, tel is %s\n\n", information[mid].name, information[mid].company, information[mid:].tel);
-				break;
+				return;
 			}
 			else
 				printf("The name does not exist.\n");
