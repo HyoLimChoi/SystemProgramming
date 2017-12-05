@@ -129,11 +129,11 @@ void dataUpdate() {
 		if (!(strcmp(tempName, information[i].name))) {
 			lseek(w_fd, i * 60, SEEK_SET);
 
-			printf("Name to edit : ", stdout);
+			printf("Name to edit : ");
 			scanf("%s", information[i].name);
-			printf("Company name to be edit : ", stdout);
+			printf("Company name to be edit : ");
 			scanf("%s", information[i].company);
-			printf("Phone number to edit : ", stdout);
+			printf("Phone number to edit : ");
 			scanf("%s", information[i].tel);
 
 
