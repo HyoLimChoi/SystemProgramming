@@ -21,11 +21,11 @@ void dataInput() {
 	w_fd = open(f, O_WRONLY | O_APPEND, 0644);
 	lseek(w_fd, 0, SEEK_END);
 
-	printf("Please Enter name : ", stdout);
+	printf("Please Enter name : ");
 	scanf("%s", information[cnt].name);
-	printf("Please enter company name : ", stdout);
+	printf("Please enter company name : ");
 	scanf("%s", information[cnt].company);
-	printf("Please enter phone number. : ", stdout);
+	printf("Please enter phone number. : ");
 	scanf("%s", information[cnt].tel);
 
 
@@ -73,7 +73,7 @@ void dataSort() {
 //void dataSearch() {
 //
 //	char tempName[20];
-//	printf("Name to search : ", stdout);
+//	printf("Name to search : ");
 //	scanf("%s", tempName);
 //	for (int i = 0; i < cnt; i++) {
 //		if (!(strcmp(tempName, information[i].name))) {
@@ -89,7 +89,7 @@ void dataSort() {
 void dataSearch() {
 
 		char tempName[20];
-		printf("Name to search : ", stdout);
+		printf("Name to search : ");
 		scanf("%s", tempName);
 
 		int mid=cnt / 2;
