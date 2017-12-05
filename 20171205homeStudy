@@ -1,0 +1,222 @@
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+typedef struct{
+	char name[20];
+	char company[20];
+	char tel[20];
+}CARD;
+
+CARD information[10]; //구조체 배열 10개 정도 선언
+char * f = "information.txt";
+int cnt = 0; //전체적인 카운트를 위한 입력
+int w_fd, r_fd; //쓰기 읽기를 위한 변수
+
+
+/*데이터 입력 함수*/
+void dataInput() {
+	w_fd = open(f, O_WRONLY | O_APPEND, 0644);
+	lseek(w_fd, 0, SEEK_END);
+
+	printf("Please Enter name : ", stdout);
+	scanf("%s", information[cnt].name);
+	printf("Please enter company name : ", stdout);
+	scanf("%s", information[cnt].company);
+	printf("Please enter phone number. : ", stdout);
+	scanf("%s", information[cnt].tel);
+
+
+	write(w_fd, information[cnt].name, 20);
+	write(w_fd, information[cnt].company, 20);
+	write(w_fd, information[cnt].tel, 20);
+	cnt++;
+}
+
+/*데이터 출력 함수*/
+void dataOutput() {
+	int i;
+	for (i = 0; i < cnt; i++) {
+		printf("========================\n");
+		printf("name : %s\n", information[i].name);
+		printf("company : %s\n", information[i].company);
+		printf("tel : %s\n", information[i].tel);
+		printf("========================\n");
+	}
+}
+
+
+/*데이터 버블정렬 함수*/
+void dataSort() {
+	char tempName[20];
+	int i;
+	int j;
+	for (i = 0; i < cnt - 1; i++)
+	{
+		for (j = 0; j < cnt - 1; j++) 
+		{
+			if (strcmp(information[j].name, information[j+1].name) == 1)
+			{
+				strcpy(tempName, information[j].name);
+				strcpy(information[j].name, information[j+1].name);
+				strcpy(information[j+1].name, tempName);
+			}
+		}
+	}
+
+	printf("\n**Sort Complete!\n");
+}
+
+/*데이터 검색 함수*/
+//void dataSearch() {
+//
+//	char tempName[20];
+//	printf("Name to search : ", stdout);
+//	scanf("%s", tempName);
+//	for (int i = 0; i < cnt; i++) {
+//		if (!(strcmp(tempName, information[i].name))) {
+//			printf("%s\t%s\t%s\n", information[i].name, information[i].company, information[i].tel);
+//			return;
+//		}
+//	}
+//	puts("The name does not exist.");
+//}
+
+
+/*데이터 이진검색 함수*/
+void dataSearch() {
+
+		char tempName[20];
+		printf("Name to search : ", stdout);
+		scanf("%s", tempName);
+
+		int mid=cnt / 2;
+		int cmp= strcmp(tempName, information[mid].name);
+		while (1) {
+			
+			
+			if (cmp>0) {
+				mid++;
+			}
+			else if (cmp < 0) {
+				mid--;
+			}
+
+
+			if (!(strcmp(tempName, information[mid].name))) {
+				printf("%s's Company is %s, tel is %s\n\n", information[mid].name, information[mid].company, information[mid:].tel);
+				break;
+			}
+			else
+				printf("The name does not exist.\n");
+		}
+	
+
+}
+
+/*데이터 수정 함수*/
+void dataUpdate() {
+	int i;
+	char tempName[20];
+	w_fd = open(f, O_WRONLY);
+	printf("Please enter a name to update : ", stdout);
+	scanf("%s", tempName);
+
+
+	for (i = 0; i < cnt; i++) {
+		if (!(strcmp(tempName, information[i].name))) {
+			lseek(w_fd, i * 60, SEEK_SET);
+
+			printf("Name to edit : ", stdout);
+			scanf("%s", information[i].name);
+			printf("Company name to be edit : ", stdout);
+			scanf("%s", information[i].company);
+			printf("Phone number to edit : ", stdout);
+			scanf("%s", information[i].tel);
+
+
+			write(w_fd, information[i].name, 20);
+			write(w_fd, information[i].company, 20);
+			write(w_fd, information[i].tel, 20);
+			return;
+		}
+	}
+	printf("The name does not exist.\n");
+}
+
+/*데이터 삭제 함수*/
+void dataDelete() {
+	char tempName[20];
+	int i;
+	int j;
+	w_fd = open(f, O_WRONLY | O_TRUNC);
+	printf("Please enter a name to delete : ", stdout);
+	scanf("%s", tempName);
+	for (i = 0; i < cnt; i++)
+	{
+		if (!(strcmp(tempName, information[i].name))){
+			for (j = i; j < cnt; j++){
+				information[j] = information[j + 1];
+			}
+
+			cnt--;
+
+			for (i = 0; i<cnt; i++){
+				write(w_fd, information[i].name, 20);
+				write(w_fd, information[i].company, 20);
+				write(w_fd, information[i].tel, 20);
+			}
+			return;
+		}
+	}
+	puts("The name does not exist.");
+}
+
+
+
+
+
+int main()
+{
+	int input; //어떤 동작할지 선택 함수
+
+	w_fd = open(f, O_WRONLY | O_CREAT, 0644); //쓰기와 생성용 선언
+	r_fd = open(f, O_RDONLY);//읽기전용 선언
+
+
+	while (1) {
+		/*기존 파일이 비었는지 확인*/
+		if (read(r_fd, information[cnt].name, 20) == 0) {
+			break;
+		}
+		/*기존에 파일에 정보 있는지 확인*/
+		read(r_fd, information[cnt].company, 20);
+		read(r_fd, information[cnt].tel, 20);
+		cnt++;
+	}
+	close(r_fd);
+
+
+	while (1) {
+		printf("(1)Data Input\n(2)Data Output\n(3)Data Sort\n(4)Data Search\n(5)Data Update\n(6)Data Delete\n(7)Quit\n ");
+		scanf("%d", &input);
+		/*선택한 동작 선택*/
+		switch (input) {
+		case 1:dataInput();break;
+		case 2:dataOutput();break;
+		case 3:dataSort(); break;
+		case 4:dataSearch();break;
+		case 5:	dataUpdate();break;
+		case 6:	dataDelete();break;
+		case 7:
+			printf("\n\n****Program End****\n\n\n\n");
+			close(w_fd);
+			return;
+		default: printf("Please ReInput.\n");
+		}
+		getchar();
+
+	}
+}
