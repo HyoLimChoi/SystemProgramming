@@ -52,7 +52,8 @@ void dataOutput() {
 void dataSort() {
 	int i;
 	int j;
-	CARD * temp;
+	CARD temp;
+	int n;
 	for (i = 0; i < cnt - 1; i++)
 	{
 		for (j = 0; j < cnt - 1; j++) 
@@ -62,11 +63,16 @@ void dataSort() {
 				temp=information[j];
 				information[j]=information[j+1];
 				information[j+1]=temp;
+				n=1;
 			}
 		}
 	}
 
+	if(n==1)
 	printf("\n**Sort Complete!\n");
+	else
+	printf("\n**Sort fail!\n");
+	
 }
 
 /*데이터 검색 함수*/
