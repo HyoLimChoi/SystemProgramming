@@ -75,22 +75,6 @@ void dataSort() {
 	
 }
 
-/*데이터 검색 함수*/
-//void dataSearch() {
-//
-//	char tempName[20];
-//	printf("Name to search : ");
-//	scanf("%s", tempName);
-//	for (int i = 0; i < cnt; i++) {
-//		if (!(strcmp(tempName, information[i].name))) {
-//			printf("%s\t%s\t%s\n", information[i].name, information[i].company, information[i].tel);
-//			return;
-//		}
-//	}
-//	puts("The name does not exist.");
-//}
-
-
 /*데이터 이진검색 함수*/
 void dataSearch() {
 
