@@ -152,7 +152,7 @@ void dataDelete() {
 	int i;
 	int j;
 	w_fd = open(f, O_WRONLY | O_TRUNC);
-	printf("Please enter a name to delete : ", stdout);
+	printf("Please enter a name to delete : ");
 	scanf("%s", tempName);
 	for (i = 0; i < cnt; i++)
 	{
