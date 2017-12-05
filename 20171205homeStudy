@@ -89,7 +89,7 @@ void dataSearch() {
 
 
 			if (!(strcmp(tempName, information[mid].name))) {
-				printf("%s's Company is %s, tel is %s\n\n", information[mid].name, information[mid].company, information[mid].tel);
+				printf("<%s>'s Company is <%s>, tel is <%s>\n\n", information[mid].name, information[mid].company, information[mid].tel);
 				return;
 			}
 			else
@@ -126,7 +126,7 @@ void dataUpdate() {
 			write(w_fd, information[i].name, 20);
 			write(w_fd, information[i].company, 20);
 			write(w_fd, information[i].tel, 20);
-			printf("Update Complete!!!\n");
+			printf("<%s> Update Complete!!!\n\n",tempName);
 			return;
 		}
 	}
@@ -155,8 +155,8 @@ void dataDelete() {
 				write(w_fd, information[i].company, 20);
 				write(w_fd, information[i].tel, 20);
 			}
-			return;
-			printf("Delete Complete!!!\n");
+			printf("<%s> Delete Complete!!!\n\n",tempName);
+			return;			
 		}
 	}
 	puts("The name does not exist.");
@@ -202,7 +202,7 @@ int main()
 			printf("\n\n****Program End****\n\n\n\n");
 			close(w_fd);
 			return;
-		default: printf("Please ReInput.\n\n\n===================\n");
+		default: printf("Please ReInput.\n\n\n===================\n"); //1~7이 아닌 숫자 입력 시
 		}
 		getchar();
 
