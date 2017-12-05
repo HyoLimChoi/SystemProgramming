@@ -52,7 +52,7 @@ void dataOutput() {
 void dataSort() {
 	int i;
 	int j;
-	CARD temp;
+	CARD * temp;
 	for (i = 0; i < cnt - 1; i++)
 	{
 		for (j = 0; j < cnt - 1; j++) 
