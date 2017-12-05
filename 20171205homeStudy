@@ -58,7 +58,7 @@ void dataSort() {
 	{
 		for (j = 0; j < 9; j++) 
 		{
-			if (strcmp(information[j].name, information[j+1].name) == 1)
+			if ((strcmp(information[j].name, information[j+1].name)) == 1)
 			{
 				temp=information[j];
 				information[j]=information[j+1];
