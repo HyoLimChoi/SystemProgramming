@@ -146,7 +146,7 @@ void dataUpdate() {
 			write(w_fd, information[i].name, 20);
 			write(w_fd, information[i].company, 20);
 			write(w_fd, information[i].tel, 20);
-			printf("Update Complete!!!\n);
+			printf("Update Complete!!!\n");
 			return;
 		}
 	}
@@ -176,7 +176,7 @@ void dataDelete() {
 				write(w_fd, information[i].tel, 20);
 			}
 			return;
-			printf("Delete Complete!!!\n);
+			printf("Delete Complete!!!\n");
 		}
 	}
 	puts("The name does not exist.");
